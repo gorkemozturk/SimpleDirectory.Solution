@@ -6,10 +6,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using SimpleDirectory.Data;
+using SimpleDirectory.Extension.Filters;
+using SimpleDirectory.Extension.Interfaces;
+using SimpleDirectory.Extension.Services;
 
 namespace SimpleDirectory.Web
 {
@@ -25,7 +31,24 @@ namespace SimpleDirectory.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddEntityFrameworkNpgsql().AddDbContext<DirectoryDbContext>(options => 
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            services.AddCors(options => options.AddPolicy("DefaultCors", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ExceptionFilter>();
+            })
+            .AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,10 +59,9 @@ namespace SimpleDirectory.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("DefaultCors");
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

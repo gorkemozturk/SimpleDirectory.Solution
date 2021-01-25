@@ -18,5 +18,11 @@ namespace SimpleDirectory.Domain.Models
 
         // Relations
         public virtual ICollection<Contact> Contacts { get; set; }
+
+        // Extensions
+        public string GetFullName()
+        {
+            return $"{LastName}, {FirstName}";
+        }
     }
 }
