@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDirectory.Web", "Simp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDirectory.Domain", "SimpleDirectory.Domain\SimpleDirectory.Domain.csproj", "{274869B0-C35D-4A22-A984-5287AA8903C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDirectory.Data", "SimpleDirectory.Data\SimpleDirectory.Data.csproj", "{4E5CC1F9-AE3A-464C-9DD3-402E232E26DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDirectory.Extension", "SimpleDirectory.Extension\SimpleDirectory.Extension.csproj", "{62865000-FD96-4D19-9D51-39CF39D32F88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{274869B0-C35D-4A22-A984-5287AA8903C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{274869B0-C35D-4A22-A984-5287AA8903C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{274869B0-C35D-4A22-A984-5287AA8903C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5CC1F9-AE3A-464C-9DD3-402E232E26DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5CC1F9-AE3A-464C-9DD3-402E232E26DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5CC1F9-AE3A-464C-9DD3-402E232E26DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5CC1F9-AE3A-464C-9DD3-402E232E26DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62865000-FD96-4D19-9D51-39CF39D32F88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62865000-FD96-4D19-9D51-39CF39D32F88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62865000-FD96-4D19-9D51-39CF39D32F88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62865000-FD96-4D19-9D51-39CF39D32F88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

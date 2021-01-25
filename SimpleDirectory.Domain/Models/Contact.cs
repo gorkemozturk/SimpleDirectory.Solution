@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SimpleDirectory.Domain.Models
@@ -18,5 +19,12 @@ namespace SimpleDirectory.Domain.Models
 
         [Required]
         public string Location { get; set; }
+
+        // Foreign Key
+        public Guid PersonId { get; set; }
+
+        // Relations
+        [ForeignKey("PersonId")]
+        public virtual Person Person { get; set; }
     }
 }
