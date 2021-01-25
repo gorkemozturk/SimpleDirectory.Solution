@@ -10,8 +10,8 @@ using SimpleDirectory.Data;
 namespace SimpleDirectory.Data.Migrations
 {
     [DbContext(typeof(DirectoryDbContext))]
-    [Migration("20210125151101_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20210125174456_FixedMigration")]
+    partial class FixedMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,20 +28,15 @@ namespace SimpleDirectory.Data.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Location")
+                    b.Property<string>("Body")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("PersonId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

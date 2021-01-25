@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SimpleDirectory.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class FixedMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,9 +28,8 @@ namespace SimpleDirectory.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PhoneNumber = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(nullable: false),
-                    Location = table.Column<string>(nullable: false),
+                    Type = table.Column<int>(nullable: false),
+                    Body = table.Column<string>(nullable: false),
                     PersonId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>

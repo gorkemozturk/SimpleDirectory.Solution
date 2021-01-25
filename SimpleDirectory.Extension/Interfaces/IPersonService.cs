@@ -10,5 +10,6 @@ namespace SimpleDirectory.Extension.Interfaces
     {
         Task<PersonListDTO[]> GetPersonsAsync();
         Task<PersonDetailDTO> GetPerson(Guid id);
+        Task<bool> IsPersonExists(Guid id);
     }
 }

@@ -40,5 +40,10 @@ namespace SimpleDirectory.Extension.Services
                 .ProjectTo<PersonListDTO>(_mapper.ConfigurationProvider)
                 .ToArrayAsync();
         }
+
+        public async Task<bool> IsPersonExists(Guid id)
+        {
+            return await _context.Persons.AnyAsync(p => p.Id == id);
+        }
     }
 }

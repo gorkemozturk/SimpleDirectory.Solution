@@ -18,9 +18,8 @@ namespace SimpleDirectory.Extension.Profiles
                 .ForMember(d => d.FullName, o => o.MapFrom(src => src.GetFullName()))
                 .ForMember(d => d.Contacts, o => o.MapFrom(src => src.Contacts.Select(c => new ContactListDTO 
                 { 
-                    Email = c.Email,
-                    PhoneNumber = c.PhoneNumber,
-                    Location = c.Location
+                    Type = c.Type.ToString(),
+                    Body = c.Body
                 }).ToArray()));
         }
     }
