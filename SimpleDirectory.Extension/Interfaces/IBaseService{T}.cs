@@ -12,6 +12,6 @@ namespace SimpleDirectory.Extension.Interfaces
         T CreateResource(T resource);
         T UpdateResource(T resource);
         T DeleteResource(T resource);
-        Task SaveChangesAsync();
+        Task<int> SaveChangesAsync();
     }
 }

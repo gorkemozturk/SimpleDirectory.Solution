@@ -10,7 +10,7 @@ using SimpleDirectory.Data;
 namespace SimpleDirectory.Data.Migrations
 {
     [DbContext(typeof(DirectoryDbContext))]
-    [Migration("20210125130725_InitialMigration")]
+    [Migration("20210125151101_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

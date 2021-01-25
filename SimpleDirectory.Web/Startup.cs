@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,8 +14,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SimpleDirectory.Data;
+using SimpleDirectory.Domain.Models;
 using SimpleDirectory.Extension.Filters;
 using SimpleDirectory.Extension.Interfaces;
+using SimpleDirectory.Extension.Profiles;
 using SimpleDirectory.Extension.Services;
 
 namespace SimpleDirectory.Web
@@ -31,6 +34,10 @@ namespace SimpleDirectory.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IPersonService, PersonService>();
+
+            services.AddAutoMapper(options => options.AddProfile<MappedProfile>());
+
             services.AddEntityFrameworkNpgsql().AddDbContext<DirectoryDbContext>(options => 
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
@@ -48,6 +55,14 @@ namespace SimpleDirectory.Web
             .AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = context =>
+                {
+                    return new BadRequestObjectResult(new CustomError(context.ModelState));
+                };
             });
         }
 
