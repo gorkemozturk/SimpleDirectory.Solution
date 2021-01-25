@@ -10,7 +10,7 @@ using SimpleDirectory.Extension.Interfaces;
 
 namespace SimpleDirectory.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class DirectoriesController : ControllerBase
     {

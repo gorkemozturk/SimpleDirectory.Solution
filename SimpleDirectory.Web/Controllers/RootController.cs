@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SimpleDirectory.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RootController : ControllerBase
     {

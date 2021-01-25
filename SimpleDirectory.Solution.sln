@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDirectory.Data", "Sim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDirectory.Extension", "SimpleDirectory.Extension\SimpleDirectory.Extension.csproj", "{62865000-FD96-4D19-9D51-39CF39D32F88}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDirectory.Consumer", "SimpleDirectory.Consumer\SimpleDirectory.Consumer.csproj", "{58D1D447-71CE-4BEF-9717-0AA533B8916E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{62865000-FD96-4D19-9D51-39CF39D32F88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62865000-FD96-4D19-9D51-39CF39D32F88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62865000-FD96-4D19-9D51-39CF39D32F88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D1D447-71CE-4BEF-9717-0AA533B8916E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D1D447-71CE-4BEF-9717-0AA533B8916E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D1D447-71CE-4BEF-9717-0AA533B8916E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D1D447-71CE-4BEF-9717-0AA533B8916E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
