@@ -18,9 +18,12 @@ namespace SimpleDirectory.Extension.Profiles
                 .ForMember(d => d.FullName, o => o.MapFrom(src => src.GetFullName()))
                 .ForMember(d => d.Contacts, o => o.MapFrom(src => src.Contacts.Select(c => new ContactListDTO 
                 { 
+                    Id = c.Id,
                     Type = c.Type.ToString(),
                     Body = c.Body
                 }).ToArray()));
+
+            CreateMap<ContactInsertDTO, Contact>().ReverseMap();
         }
     }
 }

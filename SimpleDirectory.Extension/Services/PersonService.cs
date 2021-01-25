@@ -6,6 +6,7 @@ using SimpleDirectory.Domain.Models;
 using SimpleDirectory.Extension.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,11 +40,6 @@ namespace SimpleDirectory.Extension.Services
             return await _context.Persons
                 .ProjectTo<PersonListDTO>(_mapper.ConfigurationProvider)
                 .ToArrayAsync();
-        }
-
-        public async Task<bool> IsPersonExists(Guid id)
-        {
-            return await _context.Persons.AnyAsync(p => p.Id == id);
         }
     }
 }

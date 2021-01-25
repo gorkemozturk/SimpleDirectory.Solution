@@ -6,10 +6,15 @@ using System.Text;
 
 namespace SimpleDirectory.Domain.Models
 {
-    public class ContactListDTO
+    public class ContactInsertDTO
     {
-        public int Id { get; set; }
-        public string Type { get; set; }
+        [Required]
+        public ContactEnum.ContactTypes Type { get; set; }
+
+        [Required]
         public string Body { get; set; }
+
+        [Required]
+        public Guid PersonId { get; set; }
     }
 }

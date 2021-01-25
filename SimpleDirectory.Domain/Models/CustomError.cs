@@ -10,6 +10,7 @@ namespace SimpleDirectory.Domain.Models
     {
         public CustomError()
         {
+            Message = "Invalid parameter(s) has / have been detected.";
         }
 
         public CustomError(ModelStateDictionary state)

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SimpleDirectory.Extension.Interfaces
 {
-    public interface IPersonService : IBaseService<Person>
+    public interface IContactService : IBaseService<Contact>
     {
-        Task<PersonListDTO[]> GetPersonsAsync();
-        Task<PersonDetailDTO> GetPerson(Guid id);
+        Contact CreateContactByPerson(Guid personId, ContactInsertDTO contact);
+        Task<Contact> GetContactAsync(int id);
     }
 }
