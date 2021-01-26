@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SimpleDirectory.Data.Migrations
 {
-    public partial class FixedMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,6 +20,22 @@ namespace SimpleDirectory.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Persons", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reports",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Location = table.Column<string>(nullable: false),
+                    People = table.Column<int>(nullable: false),
+                    Phones = table.Column<int>(nullable: false),
+                    IsCompleted = table.Column<bool>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reports", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,6 +69,9 @@ namespace SimpleDirectory.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Contacts");
+
+            migrationBuilder.DropTable(
+                name: "Reports");
 
             migrationBuilder.DropTable(
                 name: "Persons");

@@ -10,8 +10,8 @@ using SimpleDirectory.Data;
 namespace SimpleDirectory.Data.Migrations
 {
     [DbContext(typeof(DirectoryDbContext))]
-    [Migration("20210125174456_FixedMigration")]
-    partial class FixedMigration
+    [Migration("20210126144823_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +65,33 @@ namespace SimpleDirectory.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Persons");
+                });
+
+            modelBuilder.Entity("SimpleDirectory.Domain.Models.Report", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("People")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Phones")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("SimpleDirectory.Domain.Models.Contact", b =>

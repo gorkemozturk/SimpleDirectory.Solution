@@ -65,6 +65,33 @@ namespace SimpleDirectory.Data.Migrations
                     b.ToTable("Persons");
                 });
 
+            modelBuilder.Entity("SimpleDirectory.Domain.Models.Report", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("People")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Phones")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reports");
+                });
+
             modelBuilder.Entity("SimpleDirectory.Domain.Models.Contact", b =>
                 {
                     b.HasOne("SimpleDirectory.Domain.Models.Person", "Person")

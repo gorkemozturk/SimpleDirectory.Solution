@@ -56,7 +56,6 @@ namespace SimpleDirectory.Web.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<Person>> PostPerson([FromBody] Person person)
         {
-            person.Id = Guid.NewGuid();
             _person.CreateResource(person);
 
             if (await _person.SaveChangesAsync() > 0)

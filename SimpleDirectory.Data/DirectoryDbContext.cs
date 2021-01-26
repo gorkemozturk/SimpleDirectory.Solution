@@ -14,5 +14,6 @@ namespace SimpleDirectory.Data
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Report> Reports { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using SimpleDirectory.Domain.Models;
+using SimpleDirectory.Extension.Interfaces;
 
 namespace SimpleDirectory.Web.Controllers
 {
@@ -16,37 +17,46 @@ namespace SimpleDirectory.Web.Controllers
     [ApiController]
     public class ReportsController : ControllerBase
     {
-        [HttpPost]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        public ActionResult<Report> CreateReport(Report report)
+        private readonly IReportService _report;
+
+        public ReportsController(IReportService report)
         {
-            var factory = new ConnectionFactory() 
+            _report = report;
+        }
+
+        [HttpGet]
+        [ProducesResponseType(200)]
+        public async Task<IEnumerable<Report>> GetReports()
+        {
+            return await _report.GetResourcesAsync();
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<Report>> GetReport([FromRoute] Guid id)
+        {
+            var report = await _report.GetResourceAsync(id);
+
+            if (report == null)
             {
-                Uri = new Uri("amqps://bcybidpx:NGlFdHp4l8Dmq4nyWrfAkK7qp1PqoMLe@orangutan.rmq.cloudamqp.com/bcybidpx")
-            };
+                var error = new CustomError
+                {
+                    Detail = new KeyNotFoundException().Message
+                };
 
-            using (var connection = factory.CreateConnection())
-            using (var channel = connection.CreateModel())
-            {
-                channel.QueueDeclare(
-                    queue: "reportqueue",
-                    durable: false,
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: null);
-
-                string message = JsonSerializer.Serialize(report);
-                var body = Encoding.UTF8.GetBytes(message);
-
-                channel.BasicPublish(
-                    exchange: "",
-                    routingKey: "reportqueue",
-                    basicProperties: null,
-                    body: body);
+                return NotFound(error);
             }
 
             return report;
+        }
+
+        [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public ActionResult<ReportQueueResultDTO> CreateReportQueue(ReportCreateDTO report)
+        {
+            return _report.CreateReportQueue(report);
         }
     }
 }

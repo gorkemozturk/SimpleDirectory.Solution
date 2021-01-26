@@ -36,6 +36,7 @@ namespace SimpleDirectory.Web
         {
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IReportService, ReportService>();
 
             services.AddAutoMapper(options => options.AddProfile<MappedProfile>());
 
