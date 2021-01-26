@@ -19,7 +19,7 @@ namespace SimpleDirectory.Extension.Services
             _mapper = mapper;
         }
 
-        public Contact CreateContactByPerson(Guid personId, ContactInsertDTO contact)
+        public ContactInsertDTO CreateContactByPerson(Guid personId, ContactInsertDTO contact)
         {
             if (!IsPersonExists(personId) || personId != contact.PersonId)
             {
@@ -29,7 +29,7 @@ namespace SimpleDirectory.Extension.Services
             var model = _mapper.Map<Contact>(contact);
             _context.Contacts.Add(model);
 
-            return model;
+            return contact;
         }
 
         public async Task<Contact> GetContactAsync(int id)

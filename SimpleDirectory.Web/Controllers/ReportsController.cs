@@ -56,7 +56,14 @@ namespace SimpleDirectory.Web.Controllers
         [ProducesResponseType(400)]
         public ActionResult<ReportQueueResultDTO> CreateReportQueue(ReportCreateDTO report)
         {
-            return _report.CreateReportQueue(report);
+            try
+            {
+                return _report.CreateReportQueue(report);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException(e.Message);
+            }
         }
     }
 }

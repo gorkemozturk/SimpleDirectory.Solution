@@ -8,7 +8,7 @@ namespace SimpleDirectory.Extension.Interfaces
 {
     public interface IContactService : IBaseService<Contact>
     {
-        Contact CreateContactByPerson(Guid personId, ContactInsertDTO contact);
+        ContactInsertDTO CreateContactByPerson(Guid personId, ContactInsertDTO contact);
         Task<Contact> GetContactAsync(int id);
     }
 }

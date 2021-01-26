@@ -57,7 +57,7 @@ namespace SimpleDirectory.Consumer
 
                     if (_report.SaveChangesAsync().GetAwaiter().GetResult() > 0)
                     {
-                        Console.WriteLine($"[{report.Id}] Report received at {report.CreatedAt}: {report.Location}");
+                        Console.WriteLine($"[{report.Id}] Report created at {report.CreatedAt}: {report.Location}");
                     }
                 };
 

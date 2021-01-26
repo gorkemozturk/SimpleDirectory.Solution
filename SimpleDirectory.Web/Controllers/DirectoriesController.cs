@@ -25,7 +25,7 @@ namespace SimpleDirectory.Web.Controllers
 
         [HttpGet]
         [ProducesResponseType(200)]
-        public async Task<IEnumerable<PersonListDTO>> GetPersons()
+        public async Task<IEnumerable<PersonListDTO>> GetDirectories()
         {
             return await _person.GetPersonsAsync();
         }
@@ -98,7 +98,7 @@ namespace SimpleDirectory.Web.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<Person>> CreateContactByPerson([FromRoute] Guid id, [FromBody] ContactInsertDTO contact)
+        public async Task<ActionResult<ContactInsertDTO>> CreateContactByPerson([FromRoute] Guid id, [FromBody] ContactInsertDTO contact)
         {
             var result = _contact.CreateContactByPerson(id, contact);
 
@@ -117,14 +117,14 @@ namespace SimpleDirectory.Web.Controllers
                 throw new InvalidOperationException("The contact was not inserted to existing person.");
             }
 
-            return NoContent();
+            return CreatedAtRoute(nameof(GetPerson), new { id = contact.PersonId }, contact);
         }
 
         [HttpDelete("Contact/{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<Person>> DeleteContactByPerson([FromRoute] int id)
+        public async Task<ActionResult<Person>> DeleteContact([FromRoute] int id)
         {
             var contact = await _contact.GetContactAsync(id);
 
